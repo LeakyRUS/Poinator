@@ -3,3 +3,7 @@
 ################################################################################
 
 /.vs
+/Poinator/x64/Debug
+/Poinator/x64/Release/Poinator.tlog
+/x64
+/Poinator/x64/Release

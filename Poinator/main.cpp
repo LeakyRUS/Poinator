@@ -30,7 +30,11 @@ std::string encoding(std::string userText)
 	buff = new unsigned char[userText.size() + 12];
 	memset(buff, 0, bufferSize.T_E_S[1]);
 	err = compress2(buff, &bufferSize.T_E_S[1], (const BYTE*)userText.c_str(), userText.size(), 9);
-	if (err != 0) throw std::runtime_error("Encoding error - not enough memory!");
+	if (err != 0)
+	{
+		delete[] buff;
+		throw std::runtime_error("Encoding error - not enough memory!");
+	}
 
 	for (int i = 0; i < (sizeof(uLong) * 2); i++)
 	{
@@ -41,7 +45,7 @@ std::string encoding(std::string userText)
 		encodedText.push_back(buff[i]);
 	}
 
-	delete buff;
+	delete[] buff;
 
 	// Кодировать в base64
 	base64EncodedText = base64_encode((const BYTE*)encodedText.data(), encodedText.size());
@@ -89,12 +93,16 @@ std::string decoding(std::string poiText)
 	roro = bufferSize.T_E_S[0];
 	uLong what = encodedText.size();
 	err = uncompress2(buff, &roro, (const BYTE*)encodedText.data(), &what);
-	if (err != 0) throw std::runtime_error("Decoding error - wrong encoding data!");
+	if (err != 0)
+	{
+		delete[] buff;
+		throw std::runtime_error("Decoding error - wrong encoding data!");
+	}
 	for (int i = 0; i < bufferSize.T_E_S[0]; i++)
 	{
 		userText += (char)buff[i];
 	}
-	delete buff;
+	delete[] buff;
 
 	return userText;
 }
@@ -131,24 +139,26 @@ int main()
 				if (choise[0] == 'e')
 				{
 					ed = encoding(userText);
-					std::cout << "Your encoded text: " << ed << "\nLength: " << ed.size() << std::endl;
+					std::cout << "Your encoded text: " << ed << "\nLength: " << ed.size() << '\n';
 				}
 				else if (choise[0] == 'd')
 				{
 					ed = decoding(userText);
-					std::cout << "Your decoded text: " << ed << "\nLength: " << ed.size() << std::endl;
+					std::cout << "Your decoded text: " << ed << "\nLength: " << ed.size() << '\n';
 				}
 			}
 			catch (std::runtime_error e)
 			{
-				std::cout << e.what() << '\n' << std::endl;
+				std::cout << e.what() << '\n';
 			}
 		}
 		else if (choise[0] == 'x')
 		{
 			break;
 		}
-		else std::cout << "Wrong choice!" << '\n' << std::endl;
+		else std::cout << "Wrong choice!\n";
+
+		std::cout << std::endl;
 	}
 
 	return 0;

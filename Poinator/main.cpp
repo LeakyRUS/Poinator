@@ -67,7 +67,7 @@ std::string decoding(std::string poiText)
 	bufferSize.T_E_S[0] = 0;
 	bufferSize.T_E_S[1] = 0;
 
-	uLong roro = 0;
+	uLong swallow;
 
 	std::string userText;
 	unsigned char *buff = new unsigned char[userText.size() + 12];
@@ -90,9 +90,9 @@ std::string decoding(std::string poiText)
 	// Декодировать в текст
 	buff = new unsigned char[bufferSize.T_E_S[0]];
 	memset(buff, 0, bufferSize.T_E_S[0]);
-	roro = bufferSize.T_E_S[0];
+	swallow = bufferSize.T_E_S[0];
 	uLong what = encodedText.size();
-	err = uncompress2(buff, &roro, (const BYTE*)encodedText.data(), &what);
+	err = uncompress2(buff, &swallow, (const BYTE*)encodedText.data(), &what);
 	if (err != 0)
 	{
 		delete[] buff;

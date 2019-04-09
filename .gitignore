@@ -3,7 +3,11 @@
 ################################################################################
 
 /.vs
-/Poinator/x64/Debug
-/Poinator/x64/Release/Poinator.tlog
 /x64
-/Poinator/x64/Release
+/packages/WebSocket4Net.0.15.2
+/CLI/x64/Release
+/Core/x64
+/discord_poinator_bot/bin/x64
+/discord_poinator_bot/obj
+/discord_poinator_bot/Static/Token/ApiSettings.cs
+/packages

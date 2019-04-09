@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Poinator", "Poinator\Poinator.vcxproj", "{B6F763A7-550A-4704-BC24-228E6371964D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Core", "Core\Core.vcxproj", "{B6F763A7-550A-4704-BC24-228E6371964D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CLI", "CLI\CLI.vcxproj", "{17905709-0651-458D-B83F-D01560139A24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "discord_poinator_bot", "discord_poinator_bot\discord_poinator_bot.csproj", "{A04DC1FA-A88A-474E-A506-3C9ECF6C05DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,8 +17,16 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B6F763A7-550A-4704-BC24-228E6371964D}.Debug|x64.ActiveCfg = Debug|x64
 		{B6F763A7-550A-4704-BC24-228E6371964D}.Debug|x64.Build.0 = Debug|x64
-		{B6F763A7-550A-4704-BC24-228E6371964D}.Release|x64.ActiveCfg = Debug|x64
-		{B6F763A7-550A-4704-BC24-228E6371964D}.Release|x64.Build.0 = Debug|x64
+		{B6F763A7-550A-4704-BC24-228E6371964D}.Release|x64.ActiveCfg = Release|x64
+		{B6F763A7-550A-4704-BC24-228E6371964D}.Release|x64.Build.0 = Release|x64
+		{17905709-0651-458D-B83F-D01560139A24}.Debug|x64.ActiveCfg = Debug|x64
+		{17905709-0651-458D-B83F-D01560139A24}.Debug|x64.Build.0 = Debug|x64
+		{17905709-0651-458D-B83F-D01560139A24}.Release|x64.ActiveCfg = Release|x64
+		{17905709-0651-458D-B83F-D01560139A24}.Release|x64.Build.0 = Release|x64
+		{A04DC1FA-A88A-474E-A506-3C9ECF6C05DA}.Debug|x64.ActiveCfg = Debug|x64
+		{A04DC1FA-A88A-474E-A506-3C9ECF6C05DA}.Debug|x64.Build.0 = Debug|x64
+		{A04DC1FA-A88A-474E-A506-3C9ECF6C05DA}.Release|x64.ActiveCfg = Release|x64
+		{A04DC1FA-A88A-474E-A506-3C9ECF6C05DA}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

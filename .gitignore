@@ -11,3 +11,8 @@
 /discord_poinator_bot/obj
 /discord_poinator_bot/Static/Token/ApiSettings.cs
 /packages
+/DllTest/x64/Debug
+/DllTest/x64/Release
+/DllTestCs/bin/x64
+/DllTestCs/obj
+/DllComponents.7z

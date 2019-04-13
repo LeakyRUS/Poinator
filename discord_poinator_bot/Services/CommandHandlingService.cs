@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
@@ -59,7 +59,7 @@ namespace discord_poinator_bot.Services
                 return;
 
             // the command failed, let's notify the user that something happened.
-            await context.Channel.SendMessageAsync($"error: {result.ToString()}");
+            await context.Channel.SendMessageAsync($"{result.ToString()}");
         }
 
         private Task LogAsync(LogMessage log)

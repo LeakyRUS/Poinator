@@ -9,9 +9,6 @@
 #include <iostream>
 #endif
 
-//#pragma comment(lib, "zlibwapi.lib")
-//#pragma comment(linker, "/DELAYLOAD:zlibwapi.dll")
-
 namespace Poinator
 {
 	namespace Core
@@ -26,12 +23,13 @@ namespace Poinator
 
 			namespace ASCII
 			{
-				// Взять у пользователя текст
-				// Сжать его
-				//     Переместить в другой массив
-				// Кодировать в Poi
+				// Р’Р·СЏС‚СЊ Сѓ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ С‚РµРєСЃС‚
+				// РЎР¶Р°С‚СЊ РµРіРѕ
+				//     РџРµСЂРµРјРµСЃС‚РёС‚СЊ РІ РґСЂСѓРіРѕР№ РјР°СЃСЃРёРІ
+				// РљРѕРґРёСЂРѕРІР°С‚СЊ РІ Poi
 				::std::string encoding(::std::string userText)
 				{
+					ZlibLink zl;
 					DataInfo dataInfo;
 					BufferSize bufferSize;
 					unsigned char *buff;
@@ -40,12 +38,12 @@ namespace Poinator
 
 					int err;
 
-					// сжать текст
+					// СЃР¶Р°С‚СЊ С‚РµРєСЃС‚
 					bufferSize.encoded = userText.size() + 12;
 					bufferSize.decoded = userText.size() + 1;
 					buff = new unsigned char[bufferSize.encoded];
 					memset(buff, 0, bufferSize.encoded);
-					err = compress2(buff, &bufferSize.encoded, (const unsigned char*)userText.c_str(), userText.size(), 9);
+					err = zl.compress2(buff, &bufferSize.encoded, (const unsigned char*)userText.c_str(), userText.size(), 9);
 					if (err != 0)
 					{
 						delete[] buff;
@@ -86,16 +84,17 @@ namespace Poinator
 					delete[] buff;
 					delete[] dataI;
 
-					// Кодировать в Poi
+					// РљРѕРґРёСЂРѕРІР°С‚СЊ РІ Poi
 					poiText = toPoi2(encodedText);
 
 					return poiText;
 				}
 
-				// Декодировать в сжатый текст
-				// Декодировать в текст
+				// Р”РµРєРѕРґРёСЂРѕРІР°С‚СЊ РІ СЃР¶Р°С‚С‹Р№ С‚РµРєСЃС‚
+				// Р”РµРєРѕРґРёСЂРѕРІР°С‚СЊ РІ С‚РµРєСЃС‚
 				::std::string decoding(::std::string poiText)
 				{
+					ZlibLink zl;
 					DataInfo dataInfo;
 					BufferSize bufferSize;
 
@@ -107,7 +106,7 @@ namespace Poinator
 
 					unsigned char* dataI = new unsigned char[2];
 
-					// Декодировать в сжатый текст
+					// Р”РµРєРѕРґРёСЂРѕРІР°С‚СЊ РІ СЃР¶Р°С‚С‹Р№ С‚РµРєСЃС‚
 					encodedText = fromPoi2(poiText);
 					if (encodedText.size() < 5)
 					{
@@ -140,7 +139,7 @@ namespace Poinator
 					bufferSize.decoded = Utils::findFibonacci(dataInfo.decodedMultiplier());
 					bufferSize.encoded = encodedText.size();
 
-					// Декодировать в текст
+					// Р”РµРєРѕРґРёСЂРѕРІР°С‚СЊ РІ С‚РµРєСЃС‚
 					buff = new unsigned char[bufferSize.decoded];
 					memset(buff, 0, bufferSize.decoded);
 
@@ -153,7 +152,7 @@ namespace Poinator
 					std::cout << "\nbufferSize.decoded = " << std::dec << bufferSize.decoded << "\nbufferSize.encoded = " << bufferSize.encoded << std::endl;
 #endif
 
-					err = uncompress2(buff, &bufferSize.decoded, (const unsigned char*)encodedText.data(), &bufferSize.encoded);
+					err = zl.uncompress2(buff, &bufferSize.decoded, (const unsigned char*)encodedText.data(), &bufferSize.encoded);
 #ifdef _DEBUG
 					std::cout << "\nbufferSize.decoded = " << std::dec << bufferSize.decoded << "\nbufferSize.encoded = " << bufferSize.encoded << std::endl;
 #endif
@@ -171,6 +170,25 @@ namespace Poinator
 					return userText;
 				}
 			}
+
+			/*
+			namespace Unicode
+			{
+				::std::wstring encoding(::std::wstring userText)
+				{
+					DataInfo dataInfo;
+					BufferSize bufferSize;
+					unsigned char *buff;
+					std::vector<unsigned char> encodedText;
+					std::wstring poiText;
+				}
+
+				::std::wstring decoding(::std::wstring poiText)
+				{
+
+				}
+			}
+			*/
 		}
 	}
 }

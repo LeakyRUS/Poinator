@@ -16,6 +16,12 @@ namespace Poinator
 				::std::string encoding(::std::string userText);
 				::std::string decoding(::std::string poiText);
 			}
+
+			namespace Unicode
+			{
+				//::std::wstring encoding(::std::wstring userText);
+				//::std::wstring decoding(::std::wstring poiText);
+			}
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using discord_poinator_bot.Services;
 using Discord;

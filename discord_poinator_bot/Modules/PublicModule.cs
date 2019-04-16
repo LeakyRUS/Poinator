@@ -42,7 +42,9 @@ namespace discord_poinator_bot.Modules
                 Description = answer,
                 ImageUrl = Context.Client.CurrentUser.GetAvatarUrl()
             };
-            
+
+            embed.WithColor(255, 255, 255);
+
             await Context.Channel.SendMessageAsync("", embed: embed.Build());
         }
 
@@ -65,33 +67,37 @@ namespace discord_poinator_bot.Modules
                 Description = answer
             };
 
+            embed.WithColor(255, 255, 255);
+
             await Context.Channel.SendMessageAsync("", embed: embed.Build());
         }
 
         [Command("encode")]
         [Alias(">")]
-        [RequireContext(ContextType.Guild)]
+        //[RequireContext(ContextType.Guild)]
         public async Task Encode([Remainder] string text)
         {
-            string answer = string.Empty;
             string encoded = FromDll.Encode(text);
             IUser user = Context.User;
 
             var embed = new EmbedBuilder();
 
-            if (encoded.Length > 1900)
+            if (encoded.Length > 1950)
             {
                 embed.WithTitle("Error!");
                 embed.WithDescription("Encoded text length is bigger than 2k symbols");
+                embed.WithColor(255, 128, 128);
             }
             else
             {
                 embed.WithTitle("Here is your encoded text!");
                 embed.WithAuthor(user);
                 embed.WithDescription($"```{encoded}```");
+                embed.WithColor(128, 255, 128);
             }
 
-            embed.WithFooter($"Your text: {text}");
+            if((text.Length + encoded.Length) < 1950) embed.WithFooter($"Your text: {text}");
+            else embed.WithFooter($"Your text is so big...");
 
             await Context.Channel.SendMessageAsync("", embed: embed.Build());
         }
@@ -100,7 +106,6 @@ namespace discord_poinator_bot.Modules
         [Alias("<")]
         public async Task Decode([Remainder] string text)
         {
-            string answer = string.Empty;
             string decoded = FromDll.Decode(text);
             IUser user = Context.User;
 
@@ -109,6 +114,7 @@ namespace discord_poinator_bot.Modules
             embed.WithTitle("Here is your decoded text!");
             embed.WithAuthor(user);
             embed.WithDescription($"```{decoded}```");
+            embed.WithColor(128, 255, 128);
 
             await Context.Channel.SendMessageAsync("", embed: embed.Build());
         }
@@ -118,12 +124,16 @@ namespace discord_poinator_bot.Modules
         public async Task Roll([Remainder] string text = null)
         {
             IUser user = Context.User;
+            int roll = new Random((int)DateTime.Now.Ticks).Next(1, 21);
+            string rollMessage = String.Empty;
 
             var embed = new EmbedBuilder();
-            embed.WithTitle("You roll " + new Random((int)DateTime.Now.Ticks).Next(1, 20).ToString());
+            rollMessage = "You roll " + roll.ToString();
             embed.WithAuthor(user);
+            embed.WithColor((int)((roll <= 10) ? ((21 - roll) * 12.8 - 1) : 127), (int)((roll > 10) ? (roll * 12.8 - 1) : 127), 127);
 
-            if (text != null) embed.WithDescription("Your message: " + text);
+            if (text != null) embed.WithTitle(rollMessage + " " + text);
+            else embed.WithTitle(rollMessage);
 
             await Context.Channel.SendMessageAsync("", embed: embed.Build());
         }

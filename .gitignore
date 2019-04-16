@@ -4,7 +4,6 @@
 
 /.vs
 /x64
-/packages/WebSocket4Net.0.15.2
 /CLI/x64/Release
 /Core/x64
 /discord_poinator_bot/bin/x64
@@ -15,4 +14,3 @@
 /DllTest/x64/Release
 /DllTestCs/bin/x64
 /DllTestCs/obj
-/DllComponents.7z

@@ -40,7 +40,7 @@ namespace discord_poinator_bot.Services
 
             // This value holds the offset where the prefix ends
             var argPos = 0;
-            if (!message.HasMentionPrefix(_discord.CurrentUser, ref argPos))
+            if (!message.HasMentionPrefix(_discord.CurrentUser, ref argPos) && !message.HasStringPrefix("/", ref argPos))
                 return;
 
             // A new kind of command context, ShardedCommandContext can be utilized with the commands framework

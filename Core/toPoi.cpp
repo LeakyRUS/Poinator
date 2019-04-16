@@ -1,5 +1,6 @@
 #include "topoi.h"
 #include <algorithm>
+#include <stdexcept>
 
 namespace Poinator
 {

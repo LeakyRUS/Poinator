@@ -1,5 +1,6 @@
 #include "dllexport.h"
 #include "EncodeAndDecode.h"
+#include <stdexcept>
 
 static std::string errorMessage;
 
@@ -22,8 +23,6 @@ char* APICALL encode_ascii(const char* input_text)
 		errorMessage = "STD exception";
 		result = " ";
 	}
-
-	errorMessage.erase();
 
 	char* res = new char[result.size() + 1];
 	strcpy_s(res, result.size() + 1, result.c_str());
@@ -50,8 +49,6 @@ char* APICALL decode_ascii(const char* input_text)
 		errorMessage = "STD exception";
 		result = " ";
 	}
-
-	errorMessage.erase();
 
 	char* res = new char[result.size() + 1];
 	strcpy_s(res, result.size() + 1, result.c_str());

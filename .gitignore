@@ -14,3 +14,5 @@
 /DllTest/x64/Release
 /DllTestCs/bin/x64
 /DllTestCs/obj
+/discord_poinator_bot/Modules/PrivateModule.cs
+/discord_poinator_bot/Modules/GetLog.cs

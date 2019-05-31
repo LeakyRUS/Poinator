@@ -13,7 +13,10 @@ namespace Poinator
 
 			namespace ASCII
 			{
+				// зашифровать текст
 				::std::string encoding(::std::string userText);
+
+				// расшифровать
 				::std::string decoding(::std::string poiText);
 			}
 

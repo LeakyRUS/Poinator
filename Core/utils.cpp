@@ -11,7 +11,7 @@ namespace Poinator
 			{
 				unsigned prev = 1, res = 1;
 
-				for (unsigned i = 3; i <= n; i++)
+				for (unsigned i = 3; i <= n; ++i)
 				{
 					unsigned v = res + prev;
 					prev = res;
@@ -21,13 +21,11 @@ namespace Poinator
 				return res;
 			}
 
-			unsigned findFibNbigger(unsigned number)
+			unsigned findFibNbigger(unsigned number, unsigned max = 31)
 			{
-				constexpr unsigned n = 31;
-
 				unsigned p = 1, r = 1;
 
-				for (unsigned i = 3; i <= n; i++)
+				for (unsigned i = 3; i <= max; ++i)
 				{
 					unsigned v = r + p;
 					p = r;
@@ -36,7 +34,7 @@ namespace Poinator
 					if (r >= number) return i;
 				}
 
-				return n;
+				return max;
 			}
 		}
 	}

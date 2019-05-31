@@ -13,7 +13,10 @@ namespace Poinator
 		{
 			namespace ASCII
 			{
+				// кодировать массив байт в "Poi" текст
 				std::string toPoi2(std::vector<unsigned char> byteCode);
+
+				// декодировать "Poi" текст в массив байт
 				std::vector<unsigned char> fromPoi2(std::string poiText);
 			}
 		}

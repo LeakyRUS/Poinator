@@ -4,6 +4,8 @@
 
 static std::string errorMessage;
 
+namespace ascii = Poinator::Core::Transformation::ASCII;
+
 char* APICALL encode_ascii(const char* input_text)
 {
 	std::string userMessage = input_text;
@@ -11,7 +13,7 @@ char* APICALL encode_ascii(const char* input_text)
 
 	try
 	{
-		result = Poinator::Core::Transformation::ASCII::encoding(userMessage);
+		result = ascii::encoding(userMessage);
 	}
 	catch (std::runtime_error e)
 	{
@@ -37,7 +39,7 @@ char* APICALL decode_ascii(const char* input_text)
 
 	try
 	{
-		result = Poinator::Core::Transformation::ASCII::decoding(userMessage);
+		result = ascii::decoding(userMessage);
 	}
 	catch (std::runtime_error e)
 	{

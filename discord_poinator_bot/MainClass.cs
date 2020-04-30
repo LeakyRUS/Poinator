@@ -18,6 +18,8 @@ namespace discord_poinator_bot
 
         public async Task MainAsync()
         {
+            Modules.Utils.UptimeUtils.Begin();
+
             // You specify the amount of shards you'd like to have with the
             // DiscordSocketConfig. Generally, it's recommended to
             // have 1 shard per 1500-2000 guilds your bot is in.

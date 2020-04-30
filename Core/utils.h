@@ -9,10 +9,10 @@ namespace Poinator
 		namespace Utils
 		{
 			// нахочит число фибоначчи по коэффициенту
-			unsigned findFibonacci(unsigned multiplier);
+			unsigned findFibonacci(unsigned n);
 
 			// находит наибольший коеффициент от обычного числа
-			unsigned findFibNbigger(unsigned number);
+			unsigned findFibNbigger(unsigned number, unsigned max = 31);
 		}
 	}
 }
